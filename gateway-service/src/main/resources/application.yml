@@ -1,0 +1,50 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]': # Apply to all routes
+            allowedOrigins:
+              - http://localhost:1234
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+
+  application:
+    name: gateway-service
+
+
+  main:
+    web-application-type: reactive
+
+  logging:
+    level:
+      org.springframework.cloud.gateway: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      enable:
+        include: health
+
+server:
+  port: 9087
+
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Doctor Service
+        url: /v3/api-docs # Must match the rewritten path
+

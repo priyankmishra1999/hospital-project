@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: patient-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: patient_db
+
+
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        servlet: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      enable:
+        include: health
+
+server:
+  port: 1235
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
